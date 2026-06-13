@@ -40,22 +40,31 @@ export const SITE = {
     { value: 100, suffix: '%', label: 'Rigueur & curiosité' },
   ],
 
-  // Compétences regroupées par thème (section « Expertise » de l'accueil)
-  skillGroups: [
+  // Services proposés (section « Comment je peux vous aider » de l'accueil)
+  services: [
     {
-      icon: '📐',
-      title: 'Fondations mathématiques',
-      items: ['Mathématiques appliquées', 'Statistiques', 'Probabilités', 'Algèbre linéaire', 'Optimisation'],
+      icon: '📊',
+      title: 'Analyse de données',
+      description:
+        "J'explore et valorise vos données : statistiques, visualisations et tableaux de bord clairs pour décider en confiance.",
+    },
+    {
+      icon: '🔮',
+      title: 'Modèles prédictifs',
+      description:
+        'Anticipez ventes, risques ou comportements grâce à des modèles de machine learning fiables et interprétables.',
     },
     {
       icon: '🤖',
-      title: 'Machine Learning & IA',
-      items: ['Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision', 'IA Générative / LLM'],
+      title: 'IA générative & LLM',
+      description:
+        'Chatbots, assistants documentaires (RAG) et automatisation de contenu propulsés par les grands modèles de langage.',
     },
     {
-      icon: '🛠️',
-      title: 'Outils & Technologies',
-      items: ['Python', 'TensorFlow / PyTorch', 'scikit-learn', 'Pandas / NumPy', 'Data Visualization'],
+      icon: '⚙️',
+      title: 'Du prototype à la production',
+      description:
+        "Je déploie vos modèles du notebook à l'API : industrialisation, MLOps et suivi en production.",
     },
   ],
 } as const;
