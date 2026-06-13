@@ -1,0 +1,5 @@
+# Autorise explicitement les scripts de build de ces dépendances natives
+# (sharp = optimisation d'images Astro, esbuild = bundler Vite).
+allowBuilds:
+  esbuild: true
+  sharp: true

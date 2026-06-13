@@ -1,0 +1,114 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { SITE } from '../site';
+
+// Projets à la une (sinon les 3 plus récents)
+const allProjects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const featured = allProjects.filter((p) => p.data.featured);
+const showcase = (featured.length ? featured : allProjects).slice(0, 3);
+
+// Derniers articles
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 2);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<BaseLayout>
+  <Hero />
+
+  <!-- À PROPOS -->
+  <section class="mx-auto max-w-4xl px-5 py-20">
+    <div data-reveal class="rounded-3xl border border-slate-200 bg-slate-50/50 p-8 sm:p-12 dark:border-slate-800 dark:bg-slate-900/40">
+      <h2 class="text-sm font-semibold uppercase tracking-widest text-brand-500">À propos</h2>
+      <p class="mt-4 text-2xl font-medium leading-snug text-slate-700 dark:text-slate-200">
+        {SITE.bio}
+      </p>
+      <p class="mt-4 text-slate-500 dark:text-slate-400">📍 {SITE.location}</p>
+    </div>
+  </section>
+
+  <!-- PROJETS À LA UNE -->
+  <section class="mx-auto max-w-6xl px-5 py-12">
+    <div data-reveal class="flex items-end justify-between">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Projets à la une</h2>
+        <p class="mt-2 text-slate-500 dark:text-slate-400">Une sélection de mes réalisations Data & IA.</p>
+      </div>
+      <a href="/projets" class="hidden shrink-0 font-semibold text-brand-600 hover:underline sm:block dark:text-brand-400">
+        Tout voir →
+      </a>
+    </div>
+
+    {
+      showcase.length ? (
+        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {showcase.map((project, i) => (
+            <ProjectCard project={project} delay={i * 80} />
+          ))}
+        </div>
+      ) : (
+        <p class="mt-10 rounded-2xl border border-dashed border-slate-300 p-10 text-center text-slate-400 dark:border-slate-700">
+          Aucun projet pour l'instant — ajoute ton premier fichier dans <code>src/content/projects/</code>.
+        </p>
+      )
+    }
+  </section>
+
+  <!-- DERNIERS ARTICLES -->
+  {
+    posts.length > 0 && (
+      <section class="mx-auto max-w-6xl px-5 py-12">
+        <div data-reveal class="flex items-end justify-between">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Sur le blog</h2>
+          <a href="/blog" class="hidden shrink-0 font-semibold text-brand-600 hover:underline sm:block dark:text-brand-400">
+            Tous les articles →
+          </a>
+        </div>
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          {posts.map((post, i) => (
+            <a
+              href={`/blog/${post.id}`}
+              data-reveal
+              style={`--reveal-delay: ${i * 80}ms`}
+              class="group rounded-3xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
+            >
+              <p class="text-sm text-slate-400">{fmt(post.data.date)}</p>
+              <h3 class="mt-2 text-xl font-bold transition group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                {post.data.title}
+              </h3>
+              <p class="mt-2 text-slate-500 dark:text-slate-400">{post.data.description}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- CTA FINAL -->
+  <section class="mx-auto max-w-6xl px-5 py-20">
+    <div
+      data-reveal
+      class="relative overflow-hidden rounded-[2rem] bg-gradient-brand px-8 py-16 text-center text-white shadow-2xl shadow-brand-500/30 sm:px-16"
+    >
+      <div class="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-white/10 blur-2xl"></div>
+      <h2 class="text-3xl font-bold sm:text-4xl">Un projet Data ou IA en tête ?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-lg text-white/90">
+        Discutons de la façon dont l'intelligence artificielle peut faire avancer votre entreprise.
+      </p>
+      <a
+        href="/contact"
+        class="mt-8 inline-flex rounded-full bg-white px-8 py-3.5 font-semibold text-brand-600 transition hover:-translate-y-1 hover:shadow-xl"
+      >
+        Démarrons la conversation
+      </a>
+    </div>
+  </section>
+</BaseLayout>

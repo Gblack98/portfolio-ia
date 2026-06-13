@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+// Liste unique de tags pour le filtre
+const tags = [...new Set(projects.flatMap((p) => p.data.tags))].sort();
+---
+
+<BaseLayout title="Projets" description="Mes réalisations en Data Science et Intelligence Artificielle.">
+  <section class="mx-auto max-w-6xl px-5 py-20">
+    <div data-reveal class="text-center">
+      <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">Mes <span class="text-gradient">projets</span></h1>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-500 dark:text-slate-400">
+        Du prototype au modèle en production — voici comment je mets la data et l'IA au service de problèmes concrets.
+      </p>
+    </div>
+
+    {
+      tags.length > 0 && (
+        <div data-reveal class="mt-10 flex flex-wrap justify-center gap-2" id="filters">
+          <button data-tag="all" class="filter-btn is-active rounded-full border border-slate-200 px-4 py-2 text-sm font-medium transition dark:border-slate-700">
+            Tout
+          </button>
+          {tags.map((tag) => (
+            <button data-tag={tag} class="filter-btn rounded-full border border-slate-200 px-4 py-2 text-sm font-medium transition dark:border-slate-700">
+              {tag}
+            </button>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      projects.length ? (
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" id="project-grid">
+          {projects.map((project, i) => (
+            <div class="project-item" data-tags={project.data.tags.join('|')}>
+              <ProjectCard project={project} delay={(i % 3) * 80} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p class="mt-12 rounded-2xl border border-dashed border-slate-300 p-12 text-center text-slate-400 dark:border-slate-700">
+          Aucun projet publié pour l'instant.
+        </p>
+      )
+    }
+  </section>
+</BaseLayout>
+
+<style>
+  .filter-btn.is-active {
+    background: linear-gradient(120deg, var(--color-brand-500), var(--color-violet-accent));
+    color: white;
+    border-color: transparent;
+  }
+</style>
+
+<script>
+  function setupFilters() {
+    const btns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const items = document.querySelectorAll<HTMLElement>('.project-item');
+    if (!btns.length) return;
+
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btns.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        const tag = btn.dataset.tag;
+        items.forEach((item) => {
+          const tags = (item.dataset.tags || '').split('|');
+          const show = tag === 'all' || tags.includes(tag!);
+          item.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  }
+  setupFilters();
+  document.addEventListener('astro:page-load', setupFilters);
+</script>

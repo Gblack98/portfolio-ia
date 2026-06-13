@@ -1,0 +1,83 @@
+---
+import { SITE } from '../site';
+---
+
+<section class="relative overflow-hidden">
+  <!-- Décor : halos dégradés flottants -->
+  <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+    <div class="absolute -top-24 left-1/4 h-72 w-72 rounded-full bg-brand-400/30 blur-3xl animate-[float_6s_ease-in-out_infinite]"></div>
+    <div class="absolute top-20 right-1/4 h-72 w-72 rounded-full bg-violet-accent/30 blur-3xl animate-[float_8s_ease-in-out_infinite]"></div>
+    <div class="absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-coral/20 blur-3xl"></div>
+  </div>
+
+  <div class="mx-auto max-w-6xl px-5 py-24 sm:py-32 text-center">
+    <p
+      data-reveal
+      class="mx-auto inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50/60 px-4 py-1.5 text-sm font-medium text-brand-600 dark:border-brand-500/20 dark:bg-brand-500/10 dark:text-brand-400"
+    >
+      <span class="relative flex h-2 w-2">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75"></span>
+        <span class="relative inline-flex h-2 w-2 rounded-full bg-brand-500"></span>
+      </span>
+      Disponible pour de nouvelles missions freelance
+    </p>
+
+    <h1
+      data-reveal
+      style="--reveal-delay: 80ms"
+      class="mx-auto mt-8 max-w-4xl text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-7xl"
+    >
+      Bonjour, je suis <span class="text-gradient">{SITE.name}</span>
+    </h1>
+
+    <p
+      data-reveal
+      style="--reveal-delay: 160ms"
+      class="mx-auto mt-6 max-w-2xl text-xl font-medium text-slate-600 dark:text-slate-300"
+    >
+      {SITE.role}
+    </p>
+
+    <p
+      data-reveal
+      style="--reveal-delay: 240ms"
+      class="mx-auto mt-4 max-w-2xl text-lg text-slate-500 dark:text-slate-400"
+    >
+      {SITE.tagline}
+    </p>
+
+    <div
+      data-reveal
+      style="--reveal-delay: 320ms"
+      class="mt-10 flex flex-wrap items-center justify-center gap-4"
+    >
+      <a
+        href="/projets"
+        class="rounded-full bg-gradient-brand px-7 py-3.5 font-semibold text-white shadow-xl shadow-brand-500/30 transition hover:-translate-y-1 hover:shadow-brand-500/50"
+      >
+        Voir mes projets
+      </a>
+      <a
+        href="/contact"
+        class="rounded-full border border-slate-300 px-7 py-3.5 font-semibold text-slate-700 transition hover:-translate-y-1 hover:border-brand-300 hover:text-brand-500 dark:border-slate-700 dark:text-slate-200"
+      >
+        Me contacter
+      </a>
+    </div>
+
+    <!-- Compétences défilantes -->
+    <div
+      data-reveal
+      style="--reveal-delay: 400ms"
+      class="mt-16 flex flex-wrap items-center justify-center gap-2.5"
+    >
+      {
+        SITE.skills.map((skill) => (
+          <span class="rounded-full border border-slate-200 bg-white/60 px-4 py-1.5 text-sm text-slate-600 backdrop-blur dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-300">
+            {skill}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/* Mode sombre piloté par la classe .dark sur <html> (toggle manuel) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   PALETTE & TOKENS DE DESIGN
+   Moderne, féminine, élégante : rose magenta → violet,
+   touche corail, base neutre douce.
+   ============================================================ */
+@theme {
+  /* Couleurs de marque */
+  --color-brand-50: #fdf2f8;
+  --color-brand-100: #fce7f3;
+  --color-brand-200: #fbcfe8;
+  --color-brand-300: #f9a8d4;
+  --color-brand-400: #f472b6;
+  --color-brand-500: #ec4899;
+  --color-brand-600: #db2777;
+  --color-brand-700: #be185d;
+
+  --color-violet-accent: #8b5cf6;
+  --color-coral: #fb7185;
+
+  /* Polices */
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Clash Display", "Plus Jakarta Sans", sans-serif;
+
+  /* Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-gradient: gradient 8s ease infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  @apply bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-200;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Dégradé de marque réutilisable */
+.text-gradient {
+  background: linear-gradient(120deg, var(--color-brand-500), var(--color-violet-accent), var(--color-coral));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: var(--animate-gradient);
+}
+
+.bg-gradient-brand {
+  background: linear-gradient(120deg, var(--color-brand-500), var(--color-violet-accent));
+}
+
+/* ============================================================
+   ANIMATIONS AU DÉFILEMENT (révélation)
+   Géré par un IntersectionObserver dans BaseLayout.
+   ============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respecte les préférences d'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* Contenu d'article (markdown rendu) */
+.prose-content {
+  @apply max-w-none leading-relaxed;
+}
+.prose-content h2 {
+  @apply mt-10 mb-4 text-2xl font-bold text-slate-900 dark:text-white;
+}
+.prose-content h3 {
+  @apply mt-8 mb-3 text-xl font-semibold text-slate-900 dark:text-white;
+}
+.prose-content p { @apply my-4; }
+.prose-content a { @apply text-brand-600 dark:text-brand-400 underline underline-offset-4; }
+.prose-content ul { @apply my-4 list-disc pl-6 space-y-2; }
+.prose-content ol { @apply my-4 list-decimal pl-6 space-y-2; }
+.prose-content code {
+  @apply rounded bg-slate-100 px-1.5 py-0.5 text-sm text-brand-700 dark:bg-slate-800 dark:text-brand-300;
+}
+.prose-content pre {
+  @apply my-6 overflow-x-auto rounded-xl p-4 text-sm;
+}
+.prose-content pre code { @apply bg-transparent p-0 text-inherit; }
+.prose-content blockquote {
+  @apply my-6 border-l-4 border-brand-400 pl-4 italic text-slate-600 dark:text-slate-400;
+}
+.prose-content img { @apply my-6 rounded-xl; }
