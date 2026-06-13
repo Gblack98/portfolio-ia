@@ -7,9 +7,9 @@
  * ------------------------------------------------------------------
  */
 export const SITE = {
-  name: 'Aïssatou Ndiaye',
+  name: 'Houleymatou Diallo',
   // Apparaît dans le titre des onglets du navigateur
-  shortName: 'Aïssatou Ndiaye',
+  shortName: 'Houleymatou Diallo',
   role: 'Data Scientist & Experte en Intelligence Artificielle',
   tagline: 'Je transforme vos données en décisions intelligentes.',
   bio: "Freelance passionnée par la donnée et l'IA, j'accompagne les entreprises de l'idée au modèle en production : machine learning, NLP, vision par ordinateur et IA générative.",

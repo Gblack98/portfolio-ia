@@ -40,7 +40,7 @@ const blog = defineCollection({
       updatedDate: z.coerce.date().optional(),
       tags: z.array(z.string()).default([]),
       cover: image().optional(),
-      author: z.string().default('Aïssatou Ndiaye'),
+      author: z.string().default('Houleymatou Diallo'),
       draft: z.boolean().default(false),
     }),
 });
