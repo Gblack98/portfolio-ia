@@ -10,9 +10,9 @@ export const SITE = {
   name: 'Houleymatou Diallo',
   // Apparaît dans le titre des onglets du navigateur
   shortName: 'Houleymatou Diallo',
-  role: 'Data Scientist & Experte en Intelligence Artificielle',
-  tagline: 'Je transforme vos données en décisions intelligentes.',
-  bio: "Freelance passionnée par la donnée et l'IA, j'accompagne les entreprises de l'idée au modèle en production : machine learning, NLP, vision par ordinateur et IA générative.",
+  role: 'Mathématicienne reconvertie en Data Science & IA',
+  tagline: 'Des mathématiques à l\'intelligence artificielle : je transforme vos données en décisions.',
+  bio: "Mathématicienne de formation reconvertie en data science, je mets la rigueur et le sens de l'abstraction des mathématiques au service de l'intelligence artificielle — des fondements théoriques (statistiques, probabilités, optimisation) jusqu'aux modèles en production.",
   email: 'contact@exemple.com',
   location: 'Dakar, Sénégal · Disponible en remote',
 
@@ -34,23 +34,25 @@ export const SITE = {
 
   // Chiffres clés animés sur l'accueil (modifie librement)
   stats: [
-    { value: 15, suffix: '+', label: 'Projets livrés' },
-    { value: 5, suffix: ' ans', label: "D'expérience" },
-    { value: 20, suffix: '+', label: 'Clients accompagnés' },
-    { value: 98, suffix: '%', label: 'Clients satisfaits' },
+    { value: 7, suffix: ' ans', label: 'En mathématiques' },
+    { value: 15, suffix: '+', label: 'Projets data & IA' },
+    { value: 20, suffix: '+', label: 'Modèles entraînés' },
+    { value: 100, suffix: '%', label: 'Rigueur & curiosité' },
   ],
 
   // Compétences mises en avant sur l'accueil
   skills: [
+    'Mathématiques appliquées',
+    'Statistiques',
+    'Probabilités',
+    'Algèbre linéaire',
+    'Optimisation',
     'Machine Learning',
     'Deep Learning',
     'NLP',
-    'Computer Vision',
     'IA Générative / LLM',
     'Python',
     'TensorFlow / PyTorch',
-    'Data Engineering',
-    'MLOps',
     'Data Visualization',
   ],
 } as const;

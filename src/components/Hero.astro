@@ -4,10 +4,33 @@ import { SITE } from '../site';
 
 <section class="relative overflow-hidden">
   <!-- Décor : halos dégradés flottants -->
-  <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+  <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
     <div class="absolute -top-24 left-1/4 h-72 w-72 rounded-full bg-brand-400/30 blur-3xl animate-[float_6s_ease-in-out_infinite]"></div>
     <div class="absolute top-20 right-1/4 h-72 w-72 rounded-full bg-violet-accent/30 blur-3xl animate-[float_8s_ease-in-out_infinite]"></div>
     <div class="absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-coral/20 blur-3xl"></div>
+
+    <!-- Symboles mathématiques en filigrane (clin d'œil au background de matheuse) -->
+    {
+      [
+        { s: '∑', c: 'left-[6%] top-[18%]', d: '7s', z: 'text-6xl' },
+        { s: '∫', c: 'left-[14%] top-[64%]', d: '9s', z: 'text-7xl' },
+        { s: 'π', c: 'left-[30%] top-[30%]', d: '6s', z: 'text-5xl' },
+        { s: '∞', c: 'right-[10%] top-[26%]', d: '8s', z: 'text-6xl' },
+        { s: '∂', c: 'right-[18%] top-[62%]', d: '7.5s', z: 'text-6xl' },
+        { s: 'λ', c: 'left-[48%] top-[12%]', d: '10s', z: 'text-5xl' },
+        { s: 'σ', c: 'right-[32%] top-[14%]', d: '6.5s', z: 'text-5xl' },
+        { s: '√', c: 'left-[24%] top-[82%]', d: '8.5s', z: 'text-6xl' },
+        { s: 'Δ', c: 'right-[6%] top-[78%]', d: '9.5s', z: 'text-5xl' },
+        { s: 'θ', c: 'left-[68%] top-[70%]', d: '7s', z: 'text-6xl' },
+      ].map((m) => (
+        <span
+          class={`absolute font-serif italic text-brand-500/10 dark:text-brand-400/10 ${m.c} ${m.z}`}
+          style={`animation: float ${m.d} ease-in-out infinite`}
+        >
+          {m.s}
+        </span>
+      ))
+    }
   </div>
 
   <div class="mx-auto max-w-6xl px-5 py-24 sm:py-32 text-center">

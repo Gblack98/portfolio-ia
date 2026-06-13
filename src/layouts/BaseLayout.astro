@@ -48,15 +48,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       rel="stylesheet"
     />
 
-    <!-- Mode sombre sans flash (appliqué avant le rendu) -->
+    <!-- Mode sombre sans flash — ré-appliqué aussi après chaque navigation -->
     <script is:inline>
-      const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
-        }
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      })();
-      document.documentElement.classList.toggle('dark', theme === 'dark');
+      function applyTheme() {
+        const theme = (() => {
+          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+          }
+          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        })();
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      }
+      applyTheme();
+      // Indispensable avec les View Transitions : sans ça, le thème saute au clic
+      document.addEventListener('astro:after-swap', applyTheme);
     </script>
 
     <ClientRouter />
