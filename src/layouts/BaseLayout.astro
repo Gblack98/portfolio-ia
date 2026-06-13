@@ -62,12 +62,43 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <ClientRouter />
   </head>
 
-  <body class="flex min-h-screen flex-col antialiased">
+  <body class="flex min-h-screen flex-col overflow-x-hidden antialiased">
+    <!-- Barre de progression de lecture -->
+    <div id="scroll-progress"></div>
+
     <Header />
-    <main class="flex-1">
+    <main class="flex-1" transition:animate="slide">
       <slot />
     </main>
     <Footer />
+
+    <!-- Bouton retour en haut -->
+    <button id="back-to-top" type="button" aria-label="Revenir en haut">
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+      </svg>
+    </button>
+
+    <!-- Barre de progression + retour en haut -->
+    <script>
+      function setupScrollUI() {
+        const bar = document.getElementById('scroll-progress');
+        const btn = document.getElementById('back-to-top');
+        const onScroll = () => {
+          const h = document.documentElement;
+          const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+          if (bar) bar.style.transform = `scaleX(${scrolled})`;
+          if (btn) btn.classList.toggle('is-visible', h.scrollTop > 400);
+        };
+        document.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+        btn?.addEventListener('click', () =>
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        );
+      }
+      setupScrollUI();
+      document.addEventListener('astro:after-swap', setupScrollUI);
+    </script>
 
     <!-- Révélation au défilement (IntersectionObserver) -->
     <script>

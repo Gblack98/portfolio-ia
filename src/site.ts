@@ -32,6 +32,14 @@ export const SITE = {
     { label: 'Contact', href: '/contact' },
   ],
 
+  // Chiffres clés animés sur l'accueil (modifie librement)
+  stats: [
+    { value: 15, suffix: '+', label: 'Projets livrés' },
+    { value: 5, suffix: ' ans', label: "D'expérience" },
+    { value: 20, suffix: '+', label: 'Clients accompagnés' },
+    { value: 98, suffix: '%', label: 'Clients satisfaits' },
+  ],
+
   // Compétences mises en avant sur l'accueil
   skills: [
     'Machine Learning',

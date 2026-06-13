@@ -3,34 +3,103 @@ import { SITE } from '../site';
 const year = new Date().getFullYear();
 
 const socialLinks = Object.entries(SITE.socials).filter(([, url]) => url);
+
+// Petits pictogrammes pour les réseaux
+const icons: Record<string, string> = {
+  github: 'M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0022 12c0-5.52-4.48-10-10-10z',
+  linkedin: 'M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 18.34V9.92H5.67v8.42h2.67zM7 8.5a1.55 1.55 0 100-3.1 1.55 1.55 0 000 3.1zm11.34 9.84v-4.62c0-2.47-1.32-3.62-3.08-3.62-1.42 0-2.06.78-2.41 1.33v-1.14h-2.67c.04.75 0 8.42 0 8.42h2.67v-4.7c0-.24.02-.48.09-.65.19-.48.63-.97 1.36-.97.96 0 1.35.73 1.35 1.8v4.52h2.69z',
+  twitter: 'M22 5.92a8.2 8.2 0 01-2.36.65 4.12 4.12 0 001.8-2.27 8.22 8.22 0 01-2.6 1 4.1 4.1 0 00-7 3.74 11.65 11.65 0 01-8.46-4.29 4.1 4.1 0 001.27 5.47A4.07 4.07 0 012.8 9.7v.05a4.1 4.1 0 003.29 4.02 4.1 4.1 0 01-1.85.07 4.1 4.1 0 003.83 2.85A8.23 8.23 0 012 18.4a11.62 11.62 0 006.29 1.84c7.55 0 11.67-6.25 11.67-11.67v-.53A8.3 8.3 0 0022 5.92z',
+  kaggle: 'M18.5 22h-3.2l-4.3-5.4-1.3 1.2V22H6V2h3.7v11.8l5.2-5.6h3.9l-5.5 5.7L18.5 22z',
+};
 ---
 
-<footer class="border-t border-slate-200/60 bg-slate-50/50 dark:border-slate-800/60 dark:bg-slate-900/30">
-  <div class="mx-auto max-w-6xl px-5 py-12">
-    <div class="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
-      <div>
-        <p class="text-lg font-bold">{SITE.name}</p>
-        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">{SITE.role}</p>
-      </div>
+<footer class="relative mt-20 overflow-hidden bg-slate-950 text-slate-300">
+  <!-- Décor animé -->
+  <div class="pointer-events-none absolute inset-0 opacity-40" aria-hidden="true">
+    <div class="absolute -left-20 top-0 h-72 w-72 bg-brand-500/30 blur-3xl [animation:blob_12s_ease-in-out_infinite]"></div>
+    <div class="absolute -right-16 bottom-0 h-72 w-72 bg-violet-accent/30 blur-3xl [animation:blob_16s_ease-in-out_infinite]"></div>
+  </div>
 
-      <div class="flex items-center gap-3">
+  <!-- Bande supérieure : grand appel à l'action -->
+  <div class="relative border-b border-white/10">
+    <div class="mx-auto max-w-6xl px-5 py-16 text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.3em] text-brand-400">Disponible en freelance</p>
+      <h2 class="mx-auto mt-4 max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+        Donnons vie à votre <span class="text-gradient">projet data&nbsp;&amp;&nbsp;IA</span>
+      </h2>
+      <a
+        href="/contact"
+        class="btn-shine mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-brand px-8 py-4 font-semibold text-white shadow-2xl shadow-brand-500/30 transition hover:-translate-y-1"
+      >
+        Me contacter
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" d="M5 12h14m-6-6l6 6-6 6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Corps du footer -->
+  <div class="relative mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-3">
+    <!-- Marque -->
+    <div>
+      <a href="/" class="flex items-center gap-2.5">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-brand text-lg font-bold text-white shadow-lg shadow-brand-500/30">
+          {SITE.name.charAt(0)}
+        </span>
+        <span class="text-xl font-bold text-white">{SITE.name}</span>
+      </a>
+      <p class="mt-4 max-w-xs text-sm leading-relaxed text-slate-400">{SITE.role}</p>
+      <p class="mt-3 text-sm text-slate-500">📍 {SITE.location}</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="md:justify-self-center">
+      <h3 class="text-sm font-semibold uppercase tracking-widest text-slate-500">Navigation</h3>
+      <ul class="mt-4 space-y-2.5">
+        {
+          SITE.nav.map((item) => (
+            <li>
+              <a href={item.href} class="link-underline text-slate-300 transition hover:text-white">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Réseaux + contact -->
+    <div class="md:justify-self-end">
+      <h3 class="text-sm font-semibold uppercase tracking-widest text-slate-500">Restons en contact</h3>
+      <a href={`mailto:${SITE.email}`} class="link-underline mt-4 inline-block text-slate-300 transition hover:text-white">
+        {SITE.email}
+      </a>
+      <div class="mt-5 flex gap-3">
         {
           socialLinks.map(([name, url]) => (
             <a
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              class="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium capitalize text-slate-600 transition hover:border-brand-300 hover:text-brand-500 dark:border-slate-700 dark:text-slate-300"
+              aria-label={name}
+              class="grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition hover:-translate-y-1 hover:border-brand-400/50 hover:bg-brand-500/10 hover:text-brand-400"
             >
-              {name}
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d={icons[name] ?? icons.github} />
+              </svg>
             </a>
           ))
         }
       </div>
     </div>
+  </div>
 
-    <div class="mt-8 border-t border-slate-200/60 pt-6 text-center text-sm text-slate-400 dark:border-slate-800/60">
-      © {year} {SITE.name}. Conçu avec Astro & Tailwind CSS.
+  <!-- Bas de page -->
+  <div class="relative border-t border-white/10">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-5 py-6 text-sm text-slate-500 sm:flex-row">
+      <p>© {year} {SITE.name}. Tous droits réservés.</p>
+      <p class="flex items-center gap-1.5">Fait avec <span class="text-brand-400">💜</span> au Sénégal</p>
     </div>
   </div>
 </footer>

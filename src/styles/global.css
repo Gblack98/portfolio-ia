@@ -41,6 +41,26 @@
   50% { background-position: 100% 50%; }
 }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-120%) skewX(-20deg); }
+  60%, 100% { transform: translateX(220%) skewX(-20deg); }
+}
+
+@keyframes blob {
+  0%, 100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+  33% { border-radius: 70% 30% 46% 54% / 30% 54% 46% 70%; }
+  66% { border-radius: 34% 66% 38% 62% / 63% 34% 66% 37%; }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
 /* ============================================================
    BASE
    ============================================================ */
@@ -121,3 +141,97 @@ body {
   @apply my-6 border-l-4 border-brand-400 pl-4 italic text-slate-600 dark:text-slate-400;
 }
 .prose-content img { @apply my-6 rounded-xl; }
+
+/* ============================================================
+   ÉLÉMENTS DYNAMIQUES & FUN
+   ============================================================ */
+
+/* Barre de progression de lecture (en haut) */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--color-brand-500), var(--color-violet-accent), var(--color-coral));
+  z-index: 60;
+  will-change: transform;
+}
+
+/* Bouton retour en haut */
+#back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 9999px;
+  color: white;
+  background: linear-gradient(120deg, var(--color-brand-500), var(--color-violet-accent));
+  box-shadow: 0 10px 30px -5px color-mix(in srgb, var(--color-brand-500) 50%, transparent);
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+#back-to-top:hover { transform: translateY(-4px) scale(1.08); }
+
+/* Effet "brillance" qui traverse les boutons au survol */
+.btn-shine { position: relative; overflow: hidden; }
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: translateX(-120%) skewX(-20deg);
+}
+.btn-shine:hover::after { animation: shine 0.9s ease; }
+
+/* Bandeau de compétences défilant (marquee) */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.marquee-wrap:hover .marquee { animation-play-state: paused; }
+
+/* Soulignement animé sous les liens de navigation */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: right;
+  background: linear-gradient(90deg, var(--color-brand-500), var(--color-violet-accent));
+  transition: transform 0.3s ease;
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Carte qui réagit au survol avec une lueur */
+.glow-hover { transition: box-shadow 0.4s ease, transform 0.4s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none; }
+  #scroll-progress { display: none; }
+  .btn-shine:hover::after { animation: none; }
+}
