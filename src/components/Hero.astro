@@ -87,20 +87,5 @@ import { SITE } from '../site';
         Me contacter
       </a>
     </div>
-
-    <!-- Compétences défilantes -->
-    <div
-      data-reveal
-      style="--reveal-delay: 400ms"
-      class="mt-16 flex flex-wrap items-center justify-center gap-2.5"
-    >
-      {
-        SITE.skills.map((skill) => (
-          <span class="rounded-full border border-slate-200 bg-white/60 px-4 py-1.5 text-sm text-slate-600 backdrop-blur dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-300">
-            {skill}
-          </span>
-        ))
-      }
-    </div>
   </div>
 </section>

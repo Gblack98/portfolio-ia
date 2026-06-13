@@ -40,19 +40,22 @@ export const SITE = {
     { value: 100, suffix: '%', label: 'Rigueur & curiosité' },
   ],
 
-  // Compétences mises en avant sur l'accueil
-  skills: [
-    'Mathématiques appliquées',
-    'Statistiques',
-    'Probabilités',
-    'Algèbre linéaire',
-    'Optimisation',
-    'Machine Learning',
-    'Deep Learning',
-    'NLP',
-    'IA Générative / LLM',
-    'Python',
-    'TensorFlow / PyTorch',
-    'Data Visualization',
+  // Compétences regroupées par thème (section « Expertise » de l'accueil)
+  skillGroups: [
+    {
+      icon: '📐',
+      title: 'Fondations mathématiques',
+      items: ['Mathématiques appliquées', 'Statistiques', 'Probabilités', 'Algèbre linéaire', 'Optimisation'],
+    },
+    {
+      icon: '🤖',
+      title: 'Machine Learning & IA',
+      items: ['Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision', 'IA Générative / LLM'],
+    },
+    {
+      icon: '🛠️',
+      title: 'Outils & Technologies',
+      items: ['Python', 'TensorFlow / PyTorch', 'scikit-learn', 'Pandas / NumPy', 'Data Visualization'],
+    },
   ],
 } as const;
