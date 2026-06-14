@@ -148,6 +148,21 @@ messages par e-mail** sans serveur :
 
 ---
 
+## 🤖 Faire évoluer le site avec un assistant IA
+
+Le projet est documenté pour qu'un assistant IA (Claude Code, Cursor…) puisse le modifier
+en toute sécurité. Le contexte complet est dans **[`CLAUDE.md`](./CLAUDE.md)**.
+
+Il suffit de lui parler en langage naturel, par exemple :
+- « Ajoute un projet intitulé *Prédiction du diabète* avec les tags Python et Santé. »
+- « Change mon slogan en… »
+- « Mets les couleurs principales en bleu nuit. »
+- « Publie un article de blog sur l'IA éthique. »
+
+L'IA saura quels fichiers toucher grâce à `CLAUDE.md`.
+
+---
+
 ## 🌍 Mettre en ligne sur Vercel (déploiement automatique)
 
 1. Crée un dépôt sur GitHub puis lie le projet :
