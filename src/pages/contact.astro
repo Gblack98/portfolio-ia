@@ -27,6 +27,10 @@ const socialLinks = Object.entries(SITE.socials).filter(([, url]) => url);
             <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-500 dark:bg-brand-500/10">✉️</span>
             {SITE.email}
           </a>
+          <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} class="flex items-center gap-3 text-slate-700 hover:text-brand-600 dark:text-slate-200">
+            <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-500 dark:bg-brand-500/10">📞</span>
+            {SITE.phone}
+          </a>
           <p class="flex items-center gap-3 text-slate-700 dark:text-slate-200">
             <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-500 dark:bg-brand-500/10">📍</span>
             {SITE.location}
