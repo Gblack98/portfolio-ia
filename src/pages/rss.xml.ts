@@ -6,7 +6,7 @@ import { SITE } from '../site';
 export async function GET(context: APIContext) {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return rss({
-    title: `${SITE.name} — Blog`,
+    title: `${SITE.name} · Blog`,
     description: "Articles & veille Data Science et IA",
     site: context.site ?? 'https://portfolio-ia.vercel.app',
     items: posts

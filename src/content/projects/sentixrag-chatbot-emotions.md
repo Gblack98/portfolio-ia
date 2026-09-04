@@ -1,5 +1,5 @@
 ---
-title: "SentixRAG — Chatbot IA adaptatif aux émotions"
+title: "SentixRAG : chatbot IA adaptatif aux émotions"
 description: "Un chatbot intelligent qui détecte l'état émotionnel de l'utilisateur et adapte ses réponses en temps réel, en combinant architecture RAG et analyse de sentiments."
 date: 2026-04-15
 tags: ["RAG", "NLP", "Analyse de sentiments", "LLM", "Python", "TensorFlow"]
@@ -7,7 +7,7 @@ featured: true
 draft: false
 ---
 
-> Projet phare développé dans le cadre du bootcamp intensif **Data Science & IA — DIT × Hub IA** (Oct 2025 – Avr 2026).
+> Projet phare développé dans le cadre du bootcamp intensif **Data Science & IA (DIT × Hub IA)** (Oct 2025 – Avr 2026).
 
 ## Le problème
 
@@ -35,5 +35,5 @@ la personne. **SentixRAG** part d'une idée simple : une bonne assistance commen
 
 Au-delà de la prouesse technique, SentixRAG démontre des compétences directement
 **transposables au domaine de la santé** : traitement de données textuelles complexes et
-modélisation prédictive sur des signaux humains — des méthodologies applicables au
+modélisation prédictive sur des signaux humains, des méthodologies applicables au
 traitement de données médicales et de signaux cliniques.

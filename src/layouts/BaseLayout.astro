@@ -17,7 +17,7 @@ const {
   image = '/og-image.png',
 } = Astro.props;
 
-const pageTitle = title ? `${title} · ${SITE.shortName}` : `${SITE.name} — ${SITE.role}`;
+const pageTitle = title ? `${title} · ${SITE.shortName}` : `${SITE.name} · ${SITE.role}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
@@ -48,7 +48,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       rel="stylesheet"
     />
 
-    <!-- Mode sombre sans flash — ré-appliqué aussi après chaque navigation -->
+    <!-- Mode sombre sans flash, ré-appliqué après chaque navigation -->
     <script is:inline>
       function applyTheme() {
         const theme = (() => {

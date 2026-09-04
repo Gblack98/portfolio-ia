@@ -1,5 +1,5 @@
 ---
-title: "Plateforme IA — Documentation des violences basées sur le genre"
+title: "Plateforme IA : documenter les violences basées sur le genre"
 description: "Collecte et structuration de données par NLP pour appuyer le plaidoyer et les réformes juridiques au Sénégal, en partenariat avec le mouvement Wax Jotna."
 date: 2026-05-01
 tags: ["NLP", "IA pour le social", "Data Engineering", "Python"]
@@ -25,4 +25,4 @@ juridiques, aux côtés du mouvement **Wax Jotna**.
 ## Pourquoi ce projet me tient à cœur
 
 Il incarne ma conviction qu'une IA **éthique et centrée sur l'humain** peut avoir un
-impact concret sur la société — un fil conducteur de mon travail.
+impact concret sur la société, un fil conducteur de mon travail.

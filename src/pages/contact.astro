@@ -98,8 +98,8 @@ const socialLinks = Object.entries(SITE.socials).filter(([, url]) => url);
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const data = new FormData(form);
-      const subject = encodeURIComponent(`Contact portfolio — ${data.get('name')}`);
-      const body = encodeURIComponent(`${data.get('message')}\n\n— ${data.get('name')} (${data.get('email')})`);
+      const subject = encodeURIComponent(`Contact portfolio : ${data.get('name')}`);
+      const body = encodeURIComponent(`${data.get('message')}\n\n${data.get('name')} (${data.get('email')})`);
       window.location.href = `mailto:${form.dataset.email}?subject=${subject}&body=${body}`;
     });
   }

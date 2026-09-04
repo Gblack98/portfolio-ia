@@ -1,6 +1,6 @@
 ---
 title: "Plateforme EdTech de tutorat intelligent"
-description: "IA générative et architecture RAG pour un tutorat accessible, adapté au curriculum sénégalais — un projet entrepreneurial."
+description: "IA générative et architecture RAG pour un tutorat accessible, adapté au curriculum sénégalais, un projet entrepreneurial."
 date: 2026-05-10
 tags: ["IA Générative", "RAG", "EdTech", "Python"]
 featured: true

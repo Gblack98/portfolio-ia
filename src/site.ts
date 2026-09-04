@@ -10,7 +10,7 @@ export const SITE = {
   name: 'Houleymatou Diallo',
   // Apparaît dans le titre des onglets du navigateur
   shortName: 'Houleymatou Diallo',
-  role: 'Data Scientist & Mathématicienne — IA & Éthique',
+  role: 'Data Scientist & Mathématicienne · IA & Éthique',
   tagline: "La rigueur des mathématiques au service d'une IA éthique et centrée sur l'humain.",
   bio: "Enseignante de mathématiques reconvertie en Data Scientist, titulaire de deux Masters en mathématiques (AIMS-Sénégal et UCAD). Forte d'une solide base mathématique et de 4 ans d'expérience terrain, j'allie rigueur scientifique et approche centrée sur l'humain. Je m'intéresse particulièrement aux applications de l'IA et des statistiques en santé : prédiction, modélisation et aide à la décision.",
   email: 'houleymathou0409@gmail.com',
@@ -72,7 +72,7 @@ export const SITE = {
     { period: '2026 – 2027', title: 'Programme AI & Data Science', org: 'Isherro × DataCamp', note: 'En cours' },
     { period: '2025 – 2026', title: 'Formation intensive Data Science & IA', org: 'DIT × Hub IA, Sénégal', note: '' },
     { period: '2021 – 2022', title: 'M.Sc. en Sciences Mathématiques', org: 'AIMS-Sénégal', note: 'Mention Bien' },
-    { period: '2018 – 2021', title: 'Master en Mathématiques — Géométrie & Applications', org: 'UCAD', note: 'Meilleure soutenance de promotion' },
+    { period: '2018 – 2021', title: 'Master en Mathématiques, Géométrie & Applications', org: 'UCAD', note: 'Meilleure soutenance de promotion' },
     { period: '2015 – 2018', title: 'Licence en Sciences Mathématiques', org: 'Université Assane Seck (UASZ)', note: '1ère de promotion' },
   ],
 } as const;
