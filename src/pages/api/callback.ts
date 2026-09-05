@@ -48,5 +48,5 @@ export const GET: APIRoute = async ({ url, request }) => {
     });
   }
 
-  return postMessagePage({ token: data.access_token });
+  return postMessagePage({ token: data.access_token, host: url.hostname });
 };
