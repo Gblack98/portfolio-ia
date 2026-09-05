@@ -27,6 +27,13 @@ const { data, id } = project;
           height={400}
           class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
+      ) : data.coverUrl ? (
+        <img
+          src={data.coverUrl}
+          alt={data.title}
+          loading="lazy"
+          class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+        />
       ) : (
         <div class="grid h-full w-full place-items-center text-5xl font-black text-brand-300/60 dark:text-slate-700">
           {data.title.charAt(0)}

@@ -1,0 +1,123 @@
+# Espace d'administration du site.
+# La connexion passe par GitHub : chaque enregistrement devient un commit,
+# et le site se redéploie tout seul en moins d'une minute.
+
+backend:
+  name: github
+  repo: Gblack98/portfolio-ia
+  branch: main
+  base_url: https://houleymatou-diallo.vercel.app
+  auth_endpoint: api/auth
+  auth_scope: public_repo
+
+# Les images envoyées depuis l'administration atterrissent ici.
+media_folder: public/uploads
+public_folder: /uploads
+
+locale: fr
+
+collections:
+  - name: blog
+    label: Articles
+    label_singular: Article
+    description: Les articles publiés sur le blog.
+    folder: src/content/blog
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: yaml-frontmatter
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Titre, widget: string }
+      - { name: description, label: Résumé, widget: text, hint: "Une ou deux phrases, affichées dans la liste des articles." }
+      - { name: date, label: Date de publication, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - { name: tags, label: Mots-clés, widget: list, default: [], required: false }
+      - { name: coverUrl, label: Image de couverture, widget: image, required: false }
+      - { name: author, label: Autrice, widget: string, default: Houleymatou Diallo, required: false }
+      - { name: draft, label: Brouillon, widget: boolean, default: true, hint: "Tant que c'est activé, l'article n'apparaît pas sur le site." }
+      - { name: body, label: Contenu, widget: markdown }
+
+  - name: projects
+    label: Projets
+    label_singular: Projet
+    description: Les réalisations présentées dans le portfolio.
+    folder: src/content/projects
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: yaml-frontmatter
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Titre, widget: string }
+      - { name: description, label: Phrase d'accroche, widget: text }
+      - { name: date, label: Date, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - { name: tags, label: Technologies, widget: list, default: [], required: false }
+      - { name: coverUrl, label: Image de couverture, widget: image, required: false }
+      - { name: demo, label: Lien de démonstration, widget: string, required: false }
+      - { name: repo, label: Lien du code, widget: string, required: false }
+      - { name: featured, label: Mis en avant sur l'accueil, widget: boolean, default: false }
+      - { name: draft, label: Brouillon, widget: boolean, default: false }
+      - { name: body, label: Description détaillée, widget: markdown }
+
+  - name: certifications
+    label: Certifications
+    label_singular: Certification
+    description: Diplômes et formations certifiantes affichés sur l'accueil.
+    folder: src/content/certifications
+    create: true
+    slug: '{{slug}}'
+    extension: md
+    format: yaml-frontmatter
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Intitulé, widget: string }
+      - { name: issuer, label: Organisme, widget: string }
+      - { name: date, label: Date d'obtention, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - { name: url, label: Lien de vérification, widget: string, required: false }
+      - { name: draft, label: Brouillon, widget: boolean, default: false }
+      - { name: body, label: Notes, widget: markdown, required: false }
+
+  - name: settings
+    label: Textes du site
+    files:
+      - name: general
+        label: Présentation, contact et chiffres
+        file: src/data/site.json
+        description: Le texte affiché sur la page d'accueil et les informations de contact.
+        fields:
+          - { name: name, label: Nom complet, widget: string }
+          - { name: shortName, label: Nom court (onglet du navigateur), widget: string }
+          - { name: role, label: Titre professionnel, widget: string }
+          - { name: tagline, label: Phrase d'accroche, widget: text }
+          - { name: bio, label: Présentation, widget: text }
+          - { name: email, label: E-mail, widget: string }
+          - { name: phone, label: Téléphone, widget: string }
+          - { name: location, label: Localisation, widget: string }
+          - name: socials
+            label: Réseaux
+            widget: object
+            fields:
+              - { name: github, label: GitHub, widget: string, required: false }
+              - { name: linkedin, label: LinkedIn, widget: string, required: false }
+          - name: stats
+            label: Chiffres clés
+            widget: list
+            fields:
+              - { name: value, label: Nombre, widget: number, value_type: int }
+              - { name: suffix, label: Suffixe, widget: string, required: false, hint: "Par exemple « ans », « + » ou « % »." }
+              - { name: label, label: Légende, widget: string }
+          - name: services
+            label: Services
+            widget: list
+            fields:
+              - { name: icon, label: Icône (emoji), widget: string }
+              - { name: title, label: Titre, widget: string }
+              - { name: description, label: Description, widget: text }
+          - name: education
+            label: Parcours
+            widget: list
+            fields:
+              - { name: period, label: Période, widget: string }
+              - { name: title, label: Diplôme ou formation, widget: string }
+              - { name: org, label: Établissement, widget: string }
+              - { name: note, label: Mention, widget: string, required: false }

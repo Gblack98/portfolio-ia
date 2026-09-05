@@ -44,7 +44,7 @@ const fmt = (d: Date) =>
     </header>
 
     {
-      data.cover && (
+      data.cover ? (
         <Image
           src={data.cover}
           alt={data.title}
@@ -52,7 +52,13 @@ const fmt = (d: Date) =>
           height={750}
           class="mt-10 w-full rounded-2xl border border-slate-200 dark:border-slate-800"
         />
-      )
+      ) : data.coverUrl ? (
+        <img
+          src={data.coverUrl}
+          alt={data.title}
+          class="mt-10 w-full rounded-2xl border border-slate-200 dark:border-slate-800"
+        />
+      ) : null
     }
 
     <div class="prose-content mt-10">
