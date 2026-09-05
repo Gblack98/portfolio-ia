@@ -4,7 +4,7 @@
 
 backend:
   name: github
-  repo: houleyma-arch/portfolio-ia
+  repo: Gblack98/portfolio-ia
   branch: main
   base_url: https://houleymatou-diallo.vercel.app
   auth_endpoint: api/auth
