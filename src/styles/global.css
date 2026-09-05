@@ -5,22 +5,23 @@
 
 /* ============================================================
    PALETTE & TOKENS DE DESIGN
-   Moderne, féminine, élégante : rose magenta → violet,
-   touche corail, base neutre douce.
+   Turquoise profond en couleur principale, doré en accent.
+   Le doré ne sert jamais de couleur de texte sur fond clair,
+   son contraste y est insuffisant.
    ============================================================ */
 @theme {
   /* Couleurs de marque */
-  --color-brand-50: #fdf2f8;
-  --color-brand-100: #fce7f3;
-  --color-brand-200: #fbcfe8;
-  --color-brand-300: #f9a8d4;
-  --color-brand-400: #f472b6;
-  --color-brand-500: #ec4899;
-  --color-brand-600: #db2777;
-  --color-brand-700: #be185d;
+  --color-brand-50: #ecfdf7;
+  --color-brand-100: #d1faee;
+  --color-brand-200: #a5f0dd;
+  --color-brand-300: #6ee0c8;
+  --color-brand-400: #34cbb0;
+  --color-brand-500: #16a99a;
+  --color-brand-600: #0f766e;
+  --color-brand-700: #115e59;
 
-  --color-violet-accent: #8b5cf6;
-  --color-coral: #fb7185;
+  --color-gold: #e0b352;
+  --color-sand: #f0d9a8;
 
   /* Polices */
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
@@ -69,6 +70,25 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Le dégradé de texte reste dans la famille turquoise : le passage direct du
+   turquoise au doré traverse un vert kaki peu flatteur. Le doré vit ailleurs,
+   sur des éléments pleins, où il se lit franchement. */
+:root {
+  --grad-1: #0f766e;
+  --grad-2: #16a99a;
+  --grad-3: #0b8f84;
+}
+
+.dark {
+  --grad-1: #14b8a6;
+  --grad-2: #6ee0c8;
+  --grad-3: #2dd4bf;
+}
+
+/* Accent doré, assombri sur fond clair pour rester lisible. */
+.accent-gold { color: #a5761f; }
+.dark .accent-gold { color: var(--color-gold); }
+
 body {
   font-family: var(--font-sans);
   @apply bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-200;
@@ -77,16 +97,18 @@ body {
 
 /* Dégradé de marque réutilisable */
 .text-gradient {
-  background: linear-gradient(120deg, var(--color-brand-500), var(--color-violet-accent), var(--color-coral));
-  background-size: 200% 200%;
+  background: linear-gradient(120deg, var(--grad-1), var(--grad-2), var(--grad-3));
+  /* Un peu plus large que le texte : le doré de fin reste visible au repos. */
+  background-size: 140% 140%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   animation: var(--animate-gradient);
 }
 
+/* Les boutons portent du texte blanc : le dégradé reste dans les tons foncés. */
 .bg-gradient-brand {
-  background: linear-gradient(120deg, var(--color-brand-500), var(--color-violet-accent));
+  background: linear-gradient(120deg, var(--color-brand-600), var(--color-brand-700));
 }
 
 /* ============================================================
@@ -155,7 +177,7 @@ body {
   width: 100%;
   transform: scaleX(0);
   transform-origin: 0 50%;
-  background: linear-gradient(90deg, var(--color-brand-500), var(--color-violet-accent), var(--color-coral));
+  background: linear-gradient(90deg, var(--color-brand-500), var(--color-gold), var(--color-sand));
   z-index: 60;
   will-change: transform;
 }
@@ -172,7 +194,7 @@ body {
   width: 3rem;
   border-radius: 9999px;
   color: white;
-  background: linear-gradient(120deg, var(--color-brand-500), var(--color-violet-accent));
+  background: linear-gradient(120deg, var(--color-brand-500), var(--color-gold));
   box-shadow: 0 10px 30px -5px color-mix(in srgb, var(--color-brand-500) 50%, transparent);
   opacity: 0;
   transform: translateY(20px) scale(0.8);
@@ -219,7 +241,7 @@ body {
   width: 100%;
   transform: scaleX(0);
   transform-origin: right;
-  background: linear-gradient(90deg, var(--color-brand-500), var(--color-violet-accent));
+  background: linear-gradient(90deg, var(--color-brand-500), var(--color-gold));
   transition: transform 0.3s ease;
 }
 .link-underline:hover::after {
